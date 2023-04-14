@@ -39,9 +39,8 @@ namespace BitmexApi.Services.Announcement
         {
             var serviceResponse = new ServiceResponse<List<Models.Announcement>>();
             try
-            {
-
-                serviceResponse.Data = await _context.Announcement.ToListAsync();
+            { 
+                serviceResponse.Data = await _context.Announcement.OrderByDescending(C => C.Date).ToListAsync();
                 return serviceResponse;
             }
             catch (Exception ex)
